@@ -3,23 +3,24 @@ def score(game):
     frame = 1
     in_first_half = True
     for i in range(len(game)):
-
+        current_game_point = get_value(game[i])
         if game[i] == '/':
-            result += get_value(game[i]) - last_game_point
+            result += current_game_point - last_game_point
         else:
-            result += get_value(game[i])
+            result += current_game_point
 
-        if frame < 10 and get_value(game[i]) == 10:
+        if frame < 10 and current_game_point == 10:
+            next_game_point = get_value(game[i + 1])
             if game[i] == '/':
-                result += get_value(game[i + 1])
+                result += next_game_point
             elif game[i] == 'X' or game[i] == 'x':
-                result += get_value(game[i + 1])
+                result += next_game_point
                 if game[i + 2] == '/':
-                    result += 10 - get_value(game[i + 1])
+                    result += 10 - next_game_point
                 else:
                     result += get_value(game[i + 2])
 
-        last_game_point = get_value(game[i])
+        last_game_point = current_game_point
         if not in_first_half:
             frame += 1
         in_first_half = not in_first_half
