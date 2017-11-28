@@ -13,7 +13,7 @@ def score(game):
             next_game_point = get_value(game[i + 1])
             if game[i] == '/':
                 result += next_game_point
-            elif game[i] == 'X' or game[i] == 'x':
+            elif game[i] in ('x', 'X'):
                 result += next_game_point
                 if game[i + 2] == '/':
                     result += 10 - next_game_point
